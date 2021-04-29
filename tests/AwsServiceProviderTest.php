@@ -4,6 +4,7 @@ use Aws\Laravel\AwsServiceProvider;
 use Illuminate\Container\Container;
 abstract class AwsServiceProviderTest extends \PHPUnit_Framework_TestCase
 {
+    abstract protected function setupApplication();
     private function setupServiceProvider(Container $app)
     {
         $provider = new AwsServiceProvider($app);
