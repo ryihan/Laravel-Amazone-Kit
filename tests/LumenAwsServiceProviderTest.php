@@ -11,5 +11,11 @@ class LumenAwsServiceProviderTest extends AwsServiceProviderTest
         }
         parent::setUp();
     }
+    protected function setupApplication()
+    {
+        // Create the application such that the config is loaded.
+        $app = new Application(sys_get_temp_dir());
+        $app->instance('config', new Repository());
+        return $app;
     }
 }
