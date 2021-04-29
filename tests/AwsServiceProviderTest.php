@@ -4,6 +4,17 @@ use Aws\Laravel\AwsServiceProvider;
 use Illuminate\Container\Container;
 abstract class AwsServiceProviderTest extends \PHPUnit_Framework_TestCase
 {
+    public function testRegisterAwsServiceProviderWithPackageConfigAndEnv()
+    {
+        $app = $this->setupApplication();
+        $this->setupServiceProvider($app);
+        $s3 = $app['aws']->createClient('S3');
+        $this->assertInstanceOf('Aws\S3\S3Client', $s3);
+        $credentials = $s3->getCredentials()->wait();
+        $this->assertEquals('foo', $credentials->getAccessKeyId());
+        $this->assertEquals('bar', $credentials->getSecretKey());
+        $this->assertEquals('baz', $s3->getRegion());
+    }
     public function testServiceNameIsProvided()
     {
         $app = $this->setupApplication();
