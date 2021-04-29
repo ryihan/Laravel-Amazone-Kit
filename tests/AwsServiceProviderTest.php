@@ -4,6 +4,18 @@ use Aws\Laravel\AwsServiceProvider;
 use Illuminate\Container\Container;
 abstract class AwsServiceProviderTest extends \PHPUnit_Framework_TestCase
 {
+    public function testFacadeCanBeResolvedToServiceInstance()
+    {
+        $app = $this->setupApplication();
+        $this->setupServiceProvider($app);
+
+        // Mount facades
+        AWS::setFacadeApplication($app);
+
+        // Get an instance of a client (S3) via the facade.
+        $s3 = AWS::createClient('S3');
+        $this->assertInstanceOf('Aws\S3\S3Client', $s3);
+    }
     public function testRegisterAwsServiceProviderWithPackageConfigAndEnv()
     {
         $app = $this->setupApplication();
