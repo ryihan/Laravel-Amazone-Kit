@@ -4,6 +4,12 @@ use Aws\Laravel\AwsServiceProvider;
 use Illuminate\Container\Container;
 abstract class AwsServiceProviderTest extends \PHPUnit_Framework_TestCase
 {
+    public function testServiceNameIsProvided()
+    {
+        $app = $this->setupApplication();
+        $provider = $this->setupServiceProvider($app);
+        $this->assertContains('aws', $provider->provides());
+    }
     public function testVersionInformationIsProvidedToSdkUserAgent()
     {
         $app = $this->setupApplication();
