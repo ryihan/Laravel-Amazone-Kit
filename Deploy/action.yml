@@ -1,3 +1,9 @@
+name: 'Laravel Deploy'
+description: 'Deploy Laravel Application to Server via SSH by RSync'
+author: 'Hoang Ngoc Quy'
+branding:
+    icon: 'send'
+    color: 'green'
 inputs:
     user: 
         description: 'Deploy user'
