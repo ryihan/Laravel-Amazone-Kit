@@ -11,5 +11,16 @@ then
 	echo $'\n' "------ DEPLOY KEY NOT SET YET! ----------------" $'\n'
 	exit 1
 else
+rsync --progress -avzh \
+	--exclude='.git/' \
+	--exclude='.git*' \
+	--exclude='.editorconfig' \
+	--exclude='.styleci.yml' \
+	--exclude='.idea/' \
+	--exclude='Dockerfile' \
+	--exclude='readme.md' \
+	--exclude='README.md' \
+	-e "ssh -i /root/.ssh/id_rsa" \
+	--rsync-path="sudo rsync" . $SSH_USER@$SSH_HOST:$PATH_SOURCE
 	exit 1
 fi
