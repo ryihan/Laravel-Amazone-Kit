@@ -14,6 +14,9 @@ inputs:
     port: 
         description: 'Deploy port'
         required: false
+    path: 
+        description: 'Path source on server'
+        required: true
     owner: 
         description: 'Deploy owner'
         required: true
