@@ -1,2 +1,8 @@
+#!/bin/bash
+SSH_USER=$1
+SSH_HOST=$2
+SSH_PORT=$3
+PATH_SOURCE=$4
+OWNER=$5
 	exit 1
 fi
