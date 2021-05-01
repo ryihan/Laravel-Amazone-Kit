@@ -11,6 +11,8 @@ then
 	echo $'\n' "------ DEPLOY KEY NOT SET YET! ----------------" $'\n'
 	exit 1
 else
+	printf '%b\n' "$DEPLOY_KEY" > /root/.ssh/id_rsa
+	chmod 400 /root/.ssh/id_rsa
 	echo $'\n' "------ CONFIG SUCCESSFUL! ---------------------" $'\n'
 fi
 
