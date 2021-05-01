@@ -11,6 +11,9 @@ inputs:
     host: 
         description: 'Deploy host'
         required: true
+    port: 
+        description: 'Deploy port'
+        required: false
 runs:
     using: 'docker'
     image: 'Dockerfile'
