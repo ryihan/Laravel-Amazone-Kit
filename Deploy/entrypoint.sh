@@ -11,6 +11,15 @@ then
 	echo $'\n' "------ DEPLOY KEY NOT SET YET! ----------------" $'\n'
 	exit 1
 else
+	echo $'\n' "------ CONFIG SUCCESSFUL! ---------------------" $'\n'
+fi
+
+if [ ! -z "$SSH_PORT" ];
+then
+        printf "Host %b\n\tPort %b\n" "$SSH_HOST" "$SSH_PORT" > /root/.ssh/config
+	ssh-keyscan -p $SSH_PORT -H "$SSH_HOST" >> /root/.ssh/known_hosts
+fi
+
 rsync --progress -avzh \
 	--exclude='.git/' \
 	--exclude='.git*' \
