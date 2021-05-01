@@ -2,6 +2,9 @@ inputs:
     user: 
         description: 'Deploy user'
         required: true
+    host: 
+        description: 'Deploy host'
+        required: true
         -   ${{ inputs.user }}
         -   ${{ inputs.host }}
         -   ${{ inputs.port }}
