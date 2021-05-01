@@ -33,6 +33,10 @@ rsync --progress -avzh \
 	--exclude='README.md' \
 	-e "ssh -i /root/.ssh/id_rsa" \
 	--rsync-path="sudo rsync" . $SSH_USER@$SSH_HOST:$PATH_SOURCE
+if [ $? -eq 0 ]
+then
+	echo $'\n' "------ SYNC SUCCESSFUL! -----------------------" $'\n'
+	echo $'\n' "------ RELOADING PERMISSION -------------------" $'\n'
 	ssh -i /root/.ssh/id_rsa -t $SSH_USER@$SSH_HOST "sudo chown -R $OWNER:$OWNER $PATH_SOURCE"
 	ssh -i /root/.ssh/id_rsa -t $SSH_USER@$SSH_HOST "sudo chmod 775 -R $PATH_SOURCE"
 	ssh -i /root/.ssh/id_rsa -t $SSH_USER@$SSH_HOST "sudo chmod 777 -R $PATH_SOURCE/storage"
